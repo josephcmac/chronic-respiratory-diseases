@@ -39,8 +39,8 @@ The data obtained from the AQS Data Mart is publicly available and free to use. 
 
 **AQS Data Mart:**
 *United States Environmental Protection Agency (EPA).* 
-*Air Quality System (AQS) Data Mart. Lead Concentration Data.* 
-Washington, D.C., United States: United States Environmental Protection Agency, 2023. 
+*Toxics, Precursors, and Lead Data.* 
+United States Environmental Protection Agency, 2023. 
 Available from: [https://aqs.epa.gov/aqsweb/airdata/download_files.html](https://aqs.epa.gov/aqsweb/airdata/download_files.html)
 
 ## Data Cleaning and Preprocessing
