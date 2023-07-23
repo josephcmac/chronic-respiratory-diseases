@@ -1,3 +1,10 @@
+# root path
+ROOT_PATH.txt
+
+# dataset
+*.csv
+*.parquet
+
 # History files
 .Rhistory
 .Rapp.history
