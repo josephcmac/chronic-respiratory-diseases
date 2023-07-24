@@ -11,7 +11,8 @@ IHME_name <- "IHME-GBD_2019_DATA-1b44dc17-1"
 file_path_IHME <- file.path(RAW_PATH, IHME_name, paste0(IHME_name, ".csv"))
 file_path_train <- file.path(PROCESSED_PATH, "train.csv")
 file_path_test <- file.path(PROCESSED_PATH, "test.csv")
-file_path_sample_submission <- file.path(PROCESSED_PATH, "sample_submission.csv")
+file_path_sample_submission <- file.path(PROCESSED_PATH, 
+                                         "sample_submission.csv")
 file_path_solution <- file.path(PROCESSED_PATH, "solution.csv")
 file_path_State.Names <- file.path(PROCESSED_PATH, "State.Names.csv")
 
@@ -38,12 +39,12 @@ State.Names <- df$State.Name %>% unique
 write.table(State.Names, file_path_State.Names, row.names=F, col.names = F)
 
 State.Names_train <- State.Names %>% sample(size = State.Names_train_size,
-                                                     replace = T)
+                                            replace = T)
 rm(State.Names)
 
 train <- df %>% filter(State.Name %in% State.Names_train)
-train$ID <- sapply(paste(train$State.Name, train$Year, train$Age, sep="-"), function(s)
-  hash(s) %>% substring(1,7))
+train$ID <- sapply(paste(train$State.Name, train$Year, train$Age, sep="-"), 
+                   function(s) hash(s) %>% substring(1,7))
 
 if (train$ID %>% unique %>% length == nrow(train)) {
   cat("No ID collapse for train.\n")
@@ -51,8 +52,8 @@ if (train$ID %>% unique %>% length == nrow(train)) {
   cat("ID collapse for train.\n")
 }
 test <- df %>% filter(!(State.Name %in% State.Names_train))
-test$ID <- sapply(paste(test$State.Name, test$Year, test$Age, sep="-"), function(s)
-  hash(s) %>% substring(1,7))
+test$ID <- sapply(paste(test$State.Name, test$Year, test$Age, sep="-"), 
+                  function(s) hash(s) %>% substring(1,7))
 
 if (test$ID %>% unique %>% length == nrow(test)) {
   cat("No ID collapse for test.\n")
@@ -86,5 +87,4 @@ rm(solution)
 
 test %>% select(ID, State.Name, Year, Age) %>% 
   write.csv(file_path_test, row.names = F)
-
 

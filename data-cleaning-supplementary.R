@@ -15,7 +15,8 @@ file_path_State.Names <- file.path(PROCESSED_PATH, "State.Names.csv")
 air_input <- function(year, name) {
   file_path <- file.path(RAW_PATH, name, paste0(name,"_", year, ".csv"))
   df <- read.csv(file_path) %>% 
-    select(State.Name, Date.Local, Parameter.Name, Arithmetic.Mean, X1st.Max.Value)
+    select(State.Name, Date.Local, Parameter.Name, Arithmetic.Mean, 
+           X1st.Max.Value)
   
   df$State.Name <- df$State.Name %>% 
     sapply(function(s) {
@@ -42,25 +43,30 @@ compatibility <- function(df, State.Names) {
 
 State.Names <- read.table(file_path_State.Names) %>% getElement("V1")
 
-df_LEAD <- map_dfr(START_YEAR:END_YEAR, function(year) air_input(year, "daily_LEAD"))
+df_LEAD <- map_dfr(START_YEAR:END_YEAR, function(year) air_input(year, 
+                                                                 "daily_LEAD"))
 compatibility(df_LEAD, State.Names)
 write_parquet(df_LEAD, file.path(PROCESSED_PATH, "supplementary_LEAD.parquet"))
 rm(df_LEAD)
 gc()
 
-df_NONOxNOy <- map_dfr(START_YEAR:END_YEAR, function(year) air_input(year, "daily_NONOxNOy"))
+df_NONOxNOy <- map_dfr(START_YEAR:END_YEAR, function(year) air_input(year, 
+                                                            "daily_NONOxNOy"))
 compatibility(df_NONOxNOy, State.Names)
-write_parquet(df_NONOxNOy, file.path(PROCESSED_PATH, "supplementary_NONOxNOy.parquet"))
+write_parquet(df_NONOxNOy, file.path(PROCESSED_PATH, 
+                                     "supplementary_NONOxNOy.parquet"))
 rm(df_NONOxNOy)
 gc()
 
-df_VOCS <- map_dfr(START_YEAR:END_YEAR, function(year) air_input(year, "daily_VOCS"))
+df_VOCS <- map_dfr(START_YEAR:END_YEAR, function(year) air_input(year, 
+                                                                 "daily_VOCS"))
 compatibility(df_VOCS, State.Names)
 write_parquet(df_VOCS, file.path(PROCESSED_PATH, "supplementary_VOCS.parquet"))
 rm(df_VOCS)
 gc()
 
-df_HAPS <- map_dfr(START_YEAR:END_YEAR, function(year) air_input(year, "daily_HAPS"))
+df_HAPS <- map_dfr(START_YEAR:END_YEAR, function(year) air_input(year, 
+                                                                 "daily_HAPS"))
 compatibility(df_HAPS, State.Names)
 write_parquet(df_HAPS, file.path(PROCESSED_PATH, "supplementary_HAPS.parquet"))
 rm(df_HAPS)
