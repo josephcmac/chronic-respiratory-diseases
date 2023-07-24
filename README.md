@@ -1,21 +1,44 @@
-# Chronic Respiratory Diseases Data Cleaning
+# Data Cleaning for Chronic Respiratory Diseases and Air Toxicity
 
-## Introduction
+## Contents of the Repository
 
-Welcome to the "chronic-respiratory-diseases" repository! This project is dedicated to cleaning and preparing data for the Kaggle competition titled "Air Pollution and Chronic Respiratory Diseases." The objective of this competition is to analyze the relationship between air pollution and chronic respiratory diseases in the elderly.
+Here is a brief overview of the files included in this repository and their purposes:
+
+- `data-cleaning-main.R`: This R script performs the primary data cleaning and processing tasks, generating the following files: `sample_submission.csv`, `solution.csv`, `State.Names.csv`, `test.csv`, and `train.csv`. These files are stored in the `datasets/processed` directory.
+
+- `data-cleaning-supplementary.R`: This R script generates additional data files which can be used to supplement the training of the model. The files generated are: `supplementary_LEAD.parquet`, `supplementary_NONOxNOy.parquet`, `supplementary_VOCS.parquet`, and `supplementary_HAPS.parquet`. These files are stored in the `datasets/processed` directory.
+
+- `ROOT_PATH.txt`: This file should contain the path to the directory where you have cloned this GitHub repository on your local machine.
+
+- `example.ipynb`: This Jupyter notebook provides an example of a simple predictive model using the cleaned and processed data.
+
+- `EDA.R`: This R script performs a quick exploratory data analysis (EDA) of the supplementary data files mentioned above.
+
+- `/datasets/raw`: This directory should contain the raw data downloaded by the user. The necessary data sources are: `daily_HAPS`, `daily_LEAD`, `daily_NONOxNOy`, `daily_VOCS`, and `IHME-GBD_2019_DATA-1b44dc17-1`.
+
+## Getting Started
+
+To start using this repository, clone the repository to your local machine. Then, download the necessary raw data and place it in the `datasets/raw` directory.
+
+Before running the R scripts, make sure to edit the `ROOT_PATH.txt` file to contain the path to the directory where you have cloned the repository.
+
+## Usage
+
+To perform the data cleaning and preprocessing tasks, run, first the script `data-cleaning-main.R` and, second, the script `data-cleaning-supplementary.R`. 
+
+You can then use the generated .csv and .parquet files in your models or analyses. 
+
+An example of a simple predictive model can be found in the `example.ipynb` notebook. 
+
+For a quick exploratory data analysis of the supplementary data, you can run the `EDA.R` script.
+
 
 ## Data Source
 
 ### Public Health Data
 
-The public health data for this project comes from the Global Burden of Disease (GBD) Results tool. The data specifically focuses on chronic respiratory diseases in the elderly. You can access the data through the following link:
+The public health data for this project comes from the Global Burden of Disease (GBD) Results tool. The data specifically focuses on chronic respiratory diseases in the elderly.
 
-[GBD Results - Chronic Respiratory Diseases](https://vizhub.healthdata.org/gbd-results?params=gbd-api-2019-permalink/4236f14fa0a1ca16f5588ff87364c591)
-
-
-#### Usage Limitations
-
-It is essential to understand that the data obtained from the GBD Results tool is intended for non-commercial purposes only. As we use this data for publication on the Kaggle website, we must adhere to the terms and conditions outlined in the data use agreement.
 
 #### Citation
 
@@ -23,32 +46,21 @@ It is essential to understand that the data obtained from the GBD Results tool i
 *Global Burden of Disease Collaborative Network.*
 *Global Burden of Disease Study 2019 (GBD 2019) Results.*
 Seattle, United States: Institute for Health Metrics and Evaluation (IHME), 2020.
-Available from: [https://vizhub.healthdata.org/gbd-results/](https://vizhub.healthdata.org/gbd-results/)
+Available from: [https://vizhub.healthdata.org/gbd-results?params=gbd-api-2019-permalink/4236f14fa0a1ca16f5588ff87364c591](https://vizhub.healthdata.org/gbd-results?params=gbd-api-2019-permalink/4236f14fa0a1ca16f5588ff87364c591)
 
-## Air Quality Data
+### Air Quality Data
 
-The air quality data for this project comes from the United States Environmental Protection Agency (EPA). The data specifically focuses on the lead concentration in the air. You can access the data through the following link:
+The air quality data for this project comes from the United States Environmental Protection Agency (EPA). The data specifically focuses on toxics, precursors, and lead in the air.
 
-[AQS Data Mart - Lead Concentration](https://aqs.epa.gov/aqsweb/airdata/download_files.html)
+#### Citation
 
-### Usage Limitations
-
-The data obtained from the AQS Data Mart is publicly available and free to use. However, any data that is used for publications or in any other way should provide the appropriate citation for the source.
-
-### Citation
-
-**AQS Data Mart:**
+**AQS Data:**
 *United States Environmental Protection Agency (EPA).* 
 *Toxics, Precursors, and Lead Data.* 
 United States Environmental Protection Agency, 2023. 
 Available from: [https://aqs.epa.gov/aqsweb/airdata/download_files.html](https://aqs.epa.gov/aqsweb/airdata/download_files.html)
 
-## Data Cleaning and Preprocessing
-
-This project includes cleaning, preprocessing, and combining the data from these two sources. The initial cleaning steps will focus on removing any irrelevant information and handling missing data. We will then preprocess the data to make it suitable for the required analysis. The final step will involve combining the datasets to create a single, unified dataset that captures the relationship between air pollution (specifically, lead concentration) and chronic respiratory diseases in the elderly.
-
-Before using the scripts, write your root path into the file: ROOT_PATH.txt 
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the MIT License.
